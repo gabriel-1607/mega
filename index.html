@@ -1,1 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill-Based Job Finder</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        input, button { padding: 10px; margin: 10px; font-size: 16px; }
+        #results { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Find Jobs Based on Your Skills</h1>
+    <p>Enter your skills below, and we'll match you with relevant jobs!</p>
+
+    <input type="text" id="skillsInput" placeholder="E.g., Python, Data Analysis, Leadership">
+    <button onclick="findJobs()">Find Jobs</button>
+
+    <div id="results"></div>
+
+    <script>
+        async function findJobs() {
+            let skills = document.getElementById("skillsInput").value;
+            if (!skills) {
+                alert("Please enter at least one skill.");
+                return;
+            }
+
+            let response = await fetch('/get-jobs', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ skills: skills })
+            });
+
+            let data = await response.json();
+            document.getElementById("results").innerHTML = "<h3>Recommended Jobs:</h3>" + data.jobs.map(job => `<p>${job}</p>`).join("");
+        }
+    </script>
+</body>
+</html>
 
