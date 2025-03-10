@@ -5,26 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skill-Based Job Finder</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
-        input, button { padding: 10px; margin: 10px; font-size: 16px; }
-        #results { margin-top: 20px; font-weight: bold; }
-        .auth-buttons { margin-top: 20px; }
-        .auth-buttons button { background-color: #007BFF; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; }
-        .auth-buttons button:hover { background-color: #0056b3; }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background: url('https://source.unsplash.com/1600x900/?office,technology') no-repeat center center/cover;
+            color: white;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            width: 50%;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+        }
+        input, button {
+            padding: 12px;
+            margin: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+        }
+        input {
+            width: 80%;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #218838;
+        }
+        #results {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #ffcc00;
+        }
+        .auth-buttons {
+            margin-top: 20px;
+        }
+        .auth-buttons button {
+            background: #007BFF;
+            color: white;
+            padding: 12px 24px;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+        .auth-buttons button:hover {
+            background: #0056b3;
+        }
     </style>
 </head>
 <body>
-    <h1>Find Jobs Based on Your Skills</h1>
-    <p>Enter your skills below, and we'll match you with relevant jobs!</p>
+    <div class="container">
+        <h1>Find Jobs Based on Your Skills</h1>
+        <p>Enter your skills below, and we'll match you with relevant jobs!</p>
 
-    <input type="text" id="skillsInput" placeholder="E.g., Python, Data Analysis, Leadership">
-    <button onclick="findJobs()">Find Jobs</button>
+        <input type="text" id="skillsInput" placeholder="E.g., Python, Data Analysis, Leadership">
+        <button onclick="findJobs()">Find Jobs</button>
 
-    <div id="results"></div>
+        <div id="results"></div>
 
-    <div class="auth-buttons">
-        <button onclick="window.location.href='login.html'">Login</button>
-        <button onclick="window.location.href='register.html'">Register</button>
+        <div class="auth-buttons">
+            <button onclick="window.location.href='login.html'">Login</button>
+            <button onclick="window.location.href='register.html'">Register</button>
+        </div>
     </div>
 
     <script>
