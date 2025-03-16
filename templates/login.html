@@ -4,38 +4,145 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Skill-Based Job Finder</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;300;400;500;600;700&display=swap">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Open Sans", sans-serif;
+        }
         body {
-            display: flex; justify-content: center; align-items: center;
-            height: 100vh; background: url('https://source.unsplash.com/1920x1080/?office,work') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            width: 100%;
+            padding: 0 10px;
+            background: url('https://images.unsplash.com/photo-1477346611705-65d1883cee1e?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGFyayUyMG1vdW50YWlufGVufDB8fDB8fHww') no-repeat center center/cover;
+            position: relative;
         }
-
+        body::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+        }
         .container {
-            background: rgba(255, 255, 255, 0.95); padding: 40px;
-            border-radius: 12px; text-align: center; width: 350px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
         }
-
-        h2 { color: #333; margin-bottom: 15px; }
-        input {
-            width: 90%; padding: 12px; margin: 10px 0;
-            border: 2px solid #ddd; border-radius: 5px;
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        .input-field {
+            position: relative;
+            border-bottom: 2px solid #ccc;
+            margin: 15px 0;
+        }
+        .input-field label {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            color: #fff;
+            font-size: 16px;
+            pointer-events: none;
+            transition: 0.15s ease;
+        }
+        .input-field input {
+            width: 100%;
+            height: 40px;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            color: #fff;
+        }
+        .input-field input:focus~label,
+        .input-field input:valid~label {
+            font-size: 0.8rem;
+            top: 10px;
+            transform: translateY(-120%);
+        }
+        .forget {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 25px 0 35px 0;
+            color: #fff;
+        }
+        #remember {
+            accent-color: #fff;
+        }
+        .forget label {
+            display: flex;
+            align-items: center;
+        }
+        .forget label p {
+            margin-left: 8px;
+        }
+        .container a {
+            color: #efefef;
+            text-decoration: none;
+        }
+        .container a:hover {
+            text-decoration: underline;
         }
         button {
-            width: 100%; padding: 12px;
-            background: #007BFF; color: white;
-            border: none; border-radius: 5px;
-            cursor: pointer; transition: all 0.3s;
+            background: #fff;
+            color: #000;
+            font-weight: 600;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 16px;
+            border: 2px solid transparent;
+            transition: 0.3s ease;
         }
-        button:hover { background: #0056b3; transform: scale(1.05); }
+        button:hover {
+            color: #fff;
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .register {
+            text-align: center;
+            margin-top: 30px;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>Login</h2>
-        <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
+        <div class="input-field">
+            <input type="text" id="username" required>
+            <label for="username">Username</label>
+        </div>
+        <div class="input-field">
+            <input type="password" id="password" required>
+            <label for="password">Password</label>
+        </div>
+        <div class="forget">
+            <label><input type="checkbox" id="remember"> Remember me</label>
+            <a href="#">Forgot password?</a>
+        </div>
         <button onclick="login()">Login</button>
+        <p class="register">Don't have an account? <a href="#">Register</a></p>
         <p id="message"></p>
     </div>
 
@@ -57,4 +164,3 @@
     </script>
 </body>
 </html>
-
