@@ -88,13 +88,6 @@
         #remember {
             accent-color: #fff;
         }
-        .forget label {
-            display: flex;
-            align-items: center;
-        }
-        .forget label p {
-            margin-left: 8px;
-        }
         .container a {
             color: #efefef;
             text-decoration: none;
@@ -137,30 +130,20 @@
             <input type="password" id="password" required>
             <label for="password">Password</label>
         </div>
-        <div class="forget">
-            <label><input type="checkbox" id="remember"> Remember me</label>
-            <a href="#">Forgot password?</a>
-        </div>
-        <button onclick="login()">Login</button>
-        <p class="register">Don't have an account? <a href="#">Register</a></p>
+        <button id="loginBtn">Login</button>
+        <p class="register">Don't have an account? <a href="register.html" id="registerLink">Register</a></p>
         <p id="message"></p>
     </div>
 
     <script>
-        async function login() {
-            let username = document.getElementById("username").value;
-            let password = document.getElementById("password").value;
+        document.getElementById("loginBtn").addEventListener("click", function() {
+            window.location.href = "index.html";
+        });
 
-            let response = await fetch('/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password })
-            });
-
-            let data = await response.json();
-            document.getElementById("message").innerText = data.message;
-            if (data.success) { window.location.href = "/dashboard"; }
-        }
+        document.getElementById("registerLink").addEventListener("click", function(event) {
+            event.preventDefault();
+            window.location.href = "register.html";
+        });
     </script>
 </body>
 </html>
