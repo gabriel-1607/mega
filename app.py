@@ -39,8 +39,10 @@ def login():
                 session["user_id"] = id[0][0]
             else:
                 # Return and display error message in html
+                return render_template("login.html", message="Wrong password")
         else:
             # Return and display error message in html
+            return render_template("login.html", message="Type in all necessary information, please")
     return render_template("login.html")
 
 # Register route
