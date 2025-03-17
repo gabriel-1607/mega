@@ -6,10 +6,10 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route("/", methods=["POST", "GET"])
+@app.route("/login", methods=["POST", "GET"])
 def login():
     return render_template("login.html")
 
-@app.route("/", methods=["POST", "GET"])
+@app.route("/register", methods=["POST", "GET"])
 def register():
     return render_template("register.html")
