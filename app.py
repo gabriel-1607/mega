@@ -62,6 +62,10 @@ def register():
             return render_template("register.html", message="Type in all necessary information, please")
     return render_template("register.html")
 
+@app.route("/jobs")
+def jobs():
+    return render_template("jobs.html")
+
 @app.route('/interpret_skills', methods=['POST'])
 def interpret_skills():
     user_input = request.form['user_input']
