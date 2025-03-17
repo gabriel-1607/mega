@@ -1,11 +1,16 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, request, session
+from werkzeug.security import check_password_hash, generate_password_hash
+from flask_session import Session
 import openai
 import mysql.connector
 
 # Initialize Flask app
 app = Flask(__name__)
 
-# Conexión con la base de datos MySQL
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
+
 mydb = mysql.connector.connect(
     host="gabriel1607.mysql.pythonanywhere-services.com",
     user="gabriel1607",
@@ -20,20 +25,13 @@ def index():
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
+    if request.method == "POST":
+        if request.form.get("username")
     return render_template("login.html")
 
 @app.route("/register", methods=["POST", "GET"])
 def register():
     return render_template("register.html")
-
-@app.route("/login", methods=["POST", "GET"])
-def register():
-    return render_template("register.html")
-
-@app.route("/register", methods=["POST", "GET"])
-def register():
-    return render_template("register.html")
-
 
 @app.route('/interpret_skills', methods=['POST'])
 def interpret_skills():
