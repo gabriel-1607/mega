@@ -121,6 +121,7 @@
 <body>
     <div class="container">
         <h2>Create Your Account</h2>
+        <form action="/register" method="post">
         <div class="input-field">
             <i class="fas fa-user"></i>
             <input type="text" id="username" required>
@@ -136,7 +137,8 @@
             <input type="password" id="password" required>
             <label for="password">Password</label>
         </div>
-        <button id="registerBtn">Register</button>
+        <button id="registerBtn" type="submit">Register</button>
+        </form>
         <p class="login-link">Already have an account? <a href="login.html" id="loginLink">Login here</a></p>
         <p id="message"></p>
     </div>

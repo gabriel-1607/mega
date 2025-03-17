@@ -122,6 +122,7 @@
 <body>
     <div class="container">
         <h2>Login</h2>
+        <form action="/login" method="post">
         <div class="input-field">
             <input type="text" id="username" required>
             <label for="username">Username</label>
@@ -130,7 +131,8 @@
             <input type="password" id="password" required>
             <label for="password">Password</label>
         </div>
-        <button id="loginBtn">Login</button>
+        <button id="loginBtn" type="submit">Login</button>
+        </form>
         <p class="register">Don't have an account? <a href="register.html" id="registerLink">Register</a></p>
         <p id="message"></p>
     </div>
