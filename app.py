@@ -23,23 +23,38 @@ db = mydb.cursor()
 def index():
     return render_template("index.html")
 
+# Login route
 @app.route("/login", methods=["POST", "GET"])
 def login():
-    if request.method == "POST":
-        
 
+    session.clear()
+
+    if request.method == "POST":
+        if request.form.get("username") and request.form.get("password"):
+            db.execute("SELECT password from users WHERE username = %s", [request.form.get("username")])
+            password = db.fetchall()
+            if password and check_password_hash(password, request.form.get("password")):
+                db.execute("SELECT id from users WHERE username = %s", [request.form.get("username")])
+                id = db.fetchall()
+                session["user_id"] = id[0][0]
+            else:
+                # Return and display error message in html
+        else:
+            # Return and display error message in html
     return render_template("login.html")
 
+# Register route
 @app.route("/register", methods=["POST", "GET"])
 def register():
     if request.method == "POST":
         if request.form.get("username") and request.form.get("email") and request.form.get("password"):
-            db.execute("SELECT from users WHERE username = %s", [request.form.get("username")])
-            db.fetchall()
-            if usuario[0][0] == request.form.get("username"):
+            db.execute("SELECT username from users WHERE username = %s", [request.form.get("username")])
+            user = db.fetchall()
+            if user[0][0] == request.form.get("username"):
                 # Return and display error message in html
                 return render_template("register.html", message="Username already exists")
-            db.execute("INSERT INTO users (username, email, password) VALUES (%s, %s, %s)", [request.form.get("username"), request.form.get("email"), request.form.get("password")])
+            db.execute("INSERT INTO users (username, email, password) VALUES (%s, %s, %s)", [request.form.get("username"), request.form.get("email"), generate_password_hash(request.form.get("password"))])
+            mydb.commit()
         else:
             # Return and display error message in html
             return render_template("register.html", message="Type in all necessary information, please")

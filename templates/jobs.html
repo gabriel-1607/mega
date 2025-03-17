@@ -83,11 +83,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><td>Job 1</td></tr>
-                <tr><td>Job 2</td></tr>
-                <tr><td>Job 3</td></tr>
-                <tr><td>Job 4</td></tr>
-                <tr><td>Job 5</td></tr>
+                {{ for job in jobs }}
+                <tr><td>{{ job }}</td></tr>
+                {{ endfor }}
             </tbody>
         </table>
 
