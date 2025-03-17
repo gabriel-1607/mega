@@ -1,8 +1,8 @@
 from flask import Flask, render_template, redirect, request, session
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_session import Session
-import openai
 import mysql.connector
+import openai
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -26,11 +26,23 @@ def index():
 @app.route("/login", methods=["POST", "GET"])
 def login():
     if request.method == "POST":
-        if request.form.get("username")
+        
+
     return render_template("login.html")
 
 @app.route("/register", methods=["POST", "GET"])
 def register():
+    if request.method == "POST":
+        if request.form.get("username") and request.form.get("email") and request.form.get("password"):
+            db.execute("SELECT from users WHERE username = %s", [request.form.get("username")])
+            db.fetchall()
+            if usuario[0][0] == request.form.get("username"):
+                # Return and display error message in html
+                return render_template("register.html", message="Username already exists")
+            db.execute("INSERT INTO users (username, email, password) VALUES (%s, %s, %s)", [request.form.get("username"), request.form.get("email"), request.form.get("password")])
+        else:
+            # Return and display error message in html
+            return render_template("register.html", message="Type in all necessary information, please")
     return render_template("register.html")
 
 @app.route('/interpret_skills', methods=['POST'])
